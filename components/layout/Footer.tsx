@@ -1,10 +1,82 @@
 'use client';
 
+import Link from 'next/link';
+import Logo from '@/components/layout/logo1.png'
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* TODO: Add footer content */}
+    <footer style={{ backgroundColor: 'var(--color-surface)', borderTop: '1px solid var(--color-border)' }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div style={{ borderBottom: '1px solid var(--color-border)' }} className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12">
+          {/* Brand */}
+          <div>
+            <img src={Logo.src} width={120} alt="HENA For EB Schools" />
+            <p style={{ color: 'var(--color-text-muted)' }} className="text-sm">
+              Education is a human right.
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="section-number mb-4">Navigation</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/why-am-i-running" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                  Why I'm Running
+                </Link>
+              </li>
+              <li>
+                <Link href="#get-in-touch" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                  Get In Touch
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h4 className="section-number mb-4">Connect</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="mailto:hello@henaforeb.com" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                  Email
+                </a>
+              </li>
+              <li>
+                <a href="#" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="#" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+          <p style={{ color: 'var(--color-text-muted)' }} className="text-xs">
+            © {currentYear} Hena for East Brunswick Board of Education. All rights reserved.
+          </p>
+          <div style={{ color: 'var(--color-text-muted)' }} className="flex gap-6 text-xs">
+            <a href="#" className="hover:text-gray-700 transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-gray-700 transition-colors">
+              Terms of Service
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
