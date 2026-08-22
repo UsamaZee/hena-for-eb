@@ -29,9 +29,9 @@
   --color-focus-ring: var(--color-primary);
   
   /* TYPOGRAPHY - FONT FAMILIES */
-  --font-display: var(--font-serif);
-  --font-body: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-nunito-sans), 'Nunito Sans', sans-serif;
+  --font-body: var(--font-nunito-sans), 'Nunito Sans', sans-serif;
+  --font-mono: var(--font-nunito-sans), 'Nunito Sans', sans-serif;
   
   /* TYPOGRAPHY - SCALE */
   --font-size-xs: 0.75rem;
@@ -119,7 +119,7 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: var(--font-body), Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: var(--line-height-normal);
   font-size: var(--font-size-base);
 }
@@ -367,6 +367,7 @@ body {
    FORM INPUT STYLES
    ====================================== */
 
+/* Base input styles (used outside floating fields) */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -393,15 +394,107 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(9, 79, 11, 0.1);
 }
 
-/* Dark mode form inputs */
-@media (prefers-color-scheme: dark) {
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  textarea,
-  select {
-    background-color: var(--color-surface);
-  }
+/* ======================================
+   FLOATING LABEL FIELDS
+   ====================================== */
+
+.floating-field {
+  position: relative;
+}
+
+.floating-input {
+  width: 100%;
+  padding: 1.75rem 1rem 0.65rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  outline: none;
+}
+
+.floating-input:hover {
+  border-color: var(--color-text-muted);
+}
+
+.floating-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(9, 79, 11, 0.08);
+}
+
+.floating-label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  pointer-events: none;
+  white-space: nowrap;
+  transition:
+    top 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    font-size 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    font-weight 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Floated state — focus or has value */
+.floating-input:focus ~ .floating-label,
+.floating-input:not(:placeholder-shown) ~ .floating-label {
+  top: 0.7rem;
+  transform: none;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Textarea variant — label anchors to top by default */
+.floating-textarea {
+  padding-top: 1.75rem;
+  resize: none;
+  min-height: 150px;
+  line-height: 1.6;
+}
+
+.floating-field .floating-textarea ~ .floating-label {
+  top: 1.15rem;
+  transform: none;
+}
+
+.floating-textarea:focus ~ .floating-label,
+.floating-textarea:not(:placeholder-shown) ~ .floating-label {
+  top: 0.7rem;
+  transform: none;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ======================================
+   CONTACT PAGE COMPONENTS
+   ====================================== */
+
+.contact-brand-card {
+  background: var(--color-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  color: white;
+}
+
+.form-card {
+  background: var(--color-surface);
+  border-radius: 20px;
+  box-shadow: 0 4px 40px rgba(9, 79, 11, 0.08);
+  padding: 2.5rem;
 }
 
 /* ======================================
@@ -412,7 +505,7 @@ a {
   color: var(--color-link);
   text-decoration: none;
   transition: color var(--transition-base);
-  font-family: 'Playfair Display';
+  font-family: var(--font-body);
 }
 
 a:hover {

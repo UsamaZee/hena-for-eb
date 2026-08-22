@@ -29,7 +29,7 @@ export default function Contact() {
   return (
     <>
       {/* Priorities Section */}
-      <section className="py-24 bg-background border-t border-border">
+      {/* <section className="py-24 bg-background border-t border-border">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
 
           <motion.div
@@ -39,10 +39,14 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="section-number mb-4">02</p>
-            <h2 className="editorial-heading text-5xl md:text-6xl leading-tight">
-              Campaign <span className="accent-underline">Priorities</span>
-            </h2>
+            <div className="flex items-center gap-3 mb-2">
+              <h2 className="editorial-heading text-5xl md:text-6xl leading-tight">
+                Campaign <span className="accent-underline">Priorities</span>
+              </h2>
+              <svg width="28" height="28" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="text-primary opacity-30 shrink-0 self-end mb-2">
+                <path d="M10 0 L11.5 8.5 L20 10 L11.5 11.5 L10 20 L8.5 11.5 L0 10 L8.5 8.5 Z" fill="currentColor" />
+              </svg>
+            </div>
             <p className="text-text-muted text-xl mt-6">
               These core principles guide my commitment to East Brunswick&apos;s educational future.
             </p>
@@ -58,9 +62,12 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               >
-                <p className="text-5xl font-serif font-extrabold mb-4 leading-none text-primary opacity-25">
-                  {priority.number}
-                </p>
+                <div className="relative inline-flex items-center justify-center mb-5">
+                  <span className="absolute inset-0 rounded-full border-2 border-primary opacity-20 scale-125" aria-hidden="true" />
+                  <span className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <span className="text-white text-sm font-bold leading-none">{priority.number}</span>
+                  </span>
+                </div>
                 <h3 className="text-xl font-serif font-bold mb-3">
                   {priority.title}
                 </h3>
@@ -71,7 +78,7 @@ export default function Contact() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Spacer */}
       <div className="bg-background pb-24" />

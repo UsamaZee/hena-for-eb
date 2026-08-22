@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Logo from '@/components/layout/logo1.png'
+import Logo from '@/components/layout/logo2.png'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();

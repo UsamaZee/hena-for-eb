@@ -1,3 +1,5 @@
+import HeroBanner from '@/components/layout/hero2.png'
+
 export default function WhyAmIRunning() {
   return (
     <div style={{ backgroundColor: 'var(--color-background)' }} className="min-h-screen pt-12 pb-24">
@@ -7,6 +9,7 @@ export default function WhyAmIRunning() {
           <h1 className="editorial-heading text-5xl md:text-6xl leading-tight">
             Why I'm Running
           </h1>
+          <img src={HeroBanner.src} alt="Candidate Photo" className="w-full h-auto rounded-lg mt-6" />
         </div>
 
         <div style={{ color: 'var(--color-text)' }} className="space-y-8 text-lg leading-relaxed">

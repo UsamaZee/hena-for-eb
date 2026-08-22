@@ -1,25 +1,40 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
-import Logo from '@/components/layout/logo1.png'
+import { useState, useEffect } from 'react';
+import Logo from '@/components/layout/logo2.png'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header style={{ backgroundColor: '#fdf8f0', borderBottom: '1px solid var(--color-border)' }} className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: scrolled ? 'var(--color-surface)' : 'transparent',
+        borderBottom: scrolled ? '1px solid var(--color-border)' : '1px solid transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        boxShadow: scrolled ? '0 2px 20px rgba(9,79,11,0.06)' : 'none',
+      }}
+    >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="group">
           <img src={Logo.src} width={120} alt="HENA For EB Schools" />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-8">
           <Link href="/" className="nav-link">
             Home
           </Link>
-          <Link href="/why-am-i-running" className="nav-link-primary">
+          <Link href="/why-am-i-running" className="nav-link">
             Why I'm Running
           </Link>
           <Link href="#get-in-touch" className="nav-link">
