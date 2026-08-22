@@ -35,8 +35,11 @@ export default function GetInTouch() {
     phone: '',
     message: '',
     interested: false,
+    website: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -48,12 +51,31 @@ export default function GetInTouch() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: wire to /api/contact
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', message: '', interested: false });
-    }, 4000);
+    setSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json().catch(() => ({})) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(result.error ?? 'Unable to send your message right now.');
+      }
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: '', email: '', phone: '', message: '', interested: false, website: '' });
+      }, 4000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to send your message right now.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -203,6 +225,18 @@ export default function GetInTouch() {
                       rows={5}
                     />
 
+                    <div className="hidden" aria-hidden="true">
+                      <label htmlFor="website">Website</label>
+                      <input
+                        id="website"
+                        name="website"
+                        value={formData.website}
+                        onChange={handleChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
+
                     {/* Styled checkbox */}
                     <label className="flex items-start gap-3 cursor-pointer group">
                       <div className="relative mt-0.5">
@@ -224,9 +258,14 @@ export default function GetInTouch() {
                       </span>
                     </label>
 
-                    <button type="submit" className="w-full btn btn-primary mt-2 py-4 text-base">
-                      Send Message
+                    <button
+                      type="submit"
+                      className="w-full btn btn-primary mt-2 py-4 text-base"
+                      disabled={submitting}
+                    >
+                      {submitting ? 'Sending...' : 'Send Message'}
                     </button>
+                    {submitError && <p role="alert" className="text-danger text-sm">{submitError}</p>}
                   </motion.form>
                 )}
               </AnimatePresence>

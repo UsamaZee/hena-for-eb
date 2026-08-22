@@ -446,7 +446,7 @@ select:focus {
 /* Floated state — focus or has value */
 .floating-input:focus ~ .floating-label,
 .floating-input:not(:placeholder-shown) ~ .floating-label {
-  top: 0.7rem;
+  top: 0.25rem;
   transform: none;
   font-size: 0.62rem;
   font-weight: 700;
@@ -494,7 +494,11 @@ select:focus {
   background: var(--color-surface);
   border-radius: 20px;
   box-shadow: 0 4px 40px rgba(9, 79, 11, 0.08);
-  padding: 2.5rem;
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 2.5rem;
+  }
 }
 
 /* ======================================

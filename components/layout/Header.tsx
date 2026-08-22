@@ -37,7 +37,7 @@ export default function Header() {
           <Link href="/why-am-i-running" className="nav-link">
             Why I'm Running
           </Link>
-          <Link href="#get-in-touch" className="nav-link">
+          <Link href="/get-in-touch" className="nav-link">
             Get In Touch
           </Link>
           <a href="#donate" className="nav-link-donate">
