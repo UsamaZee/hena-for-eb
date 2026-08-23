@@ -64,7 +64,7 @@ export default function Header() {
             <Link href="/" className="nav-link py-2">
               Home
             </Link>
-            <Link href="/why-am-i-running" className="nav-link-primary py-2">
+            <Link href="/why-am-i-running" className="nav-link py-2">
               Why I'm Running
             </Link>
             <Link href="/get-in-touch" className="nav-link py-2">
