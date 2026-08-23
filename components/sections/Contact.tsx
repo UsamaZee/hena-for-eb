@@ -42,7 +42,7 @@ export default function Contact() {
               {[
                 { value: '33', label: 'Years in Community' },
                 { value: '100%', label: 'Committed to EB' },
-                { value: '∞', label: 'Invested in Students' },
+                { value: '∞', label: 'Invested in Our Children' },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.value}
