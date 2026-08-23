@@ -19,7 +19,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen pt-32 pb-0 flex flex-col items-center justify-between bg-primary/10">
+    <section className="relative overflow-hidden min-h-screen pt-32 pb-0 flex flex-col items-center justify-between bg-background">
       {/* Decorative background elements */}
       <div className="hero-blob-primary" />
       <div className="hero-blob-accent" />
