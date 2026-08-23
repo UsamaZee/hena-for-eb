@@ -12,10 +12,7 @@ export default function Footer() {
         <div style={{ borderBottom: '1px solid var(--color-border)' }} className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12">
           {/* Brand */}
           <div>
-            <img src={Logo.src} width={120} alt="HENA For EB Schools" />
-            <p style={{ color: 'var(--color-text-muted)' }} className="text-sm">
-              Education is a human right.
-            </p>
+            <img src={Logo.src} width={250} alt="HENA For EB Schools" />
           </div>
 
           {/* Navigation */}

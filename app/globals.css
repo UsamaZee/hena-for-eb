@@ -406,7 +406,7 @@ select:focus {
   width: 100%;
   padding: 1.75rem 1rem 0.65rem;
   background: var(--color-surface);
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--color-border) !important;
   border-radius: 12px;
   font-size: var(--font-size-base);
   color: var(--color-text);
@@ -421,7 +421,7 @@ select:focus {
 }
 
 .floating-input:focus {
-  border-color: var(--color-primary);
+  border-color: var(--color-primary) !important;
   box-shadow: 0 0 0 4px rgba(9, 79, 11, 0.08);
 }
 
@@ -446,8 +446,10 @@ select:focus {
 /* Floated state — focus or has value */
 .floating-input:focus ~ .floating-label,
 .floating-input:not(:placeholder-shown) ~ .floating-label {
-  top: 0.25rem;
-  transform: none;
+  top: 0rem;
+  background: var(--color-surface);
+  padding-inline: 0.25rem;;
+  transform: translateY(-50%);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -470,8 +472,10 @@ select:focus {
 
 .floating-textarea:focus ~ .floating-label,
 .floating-textarea:not(:placeholder-shown) ~ .floating-label {
-  top: 0.7rem;
-  transform: none;
+  top: 0rem;
+  background: var(--color-surface);
+  padding-inline: 0.25rem;
+  transform: translateY(-50%);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.1em;

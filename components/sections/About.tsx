@@ -27,22 +27,17 @@ export default function About() {
           <div className="space-y-8 max-w-162.5">
 
             <motion.blockquote
-              className="p-4 my-4 border-s-4 italic font-sans text-xl text-white border-primary bg-primary/70"
+              className="my-4 font-black text-xl text-primary"
               {...fadeInUp}
             >
               For the past 33 years, I have called East Brunswick my home.
             </motion.blockquote>
 
-            <div className="section-divider" />
-
             <motion.div className="space-y-6" {...fadeInUp} transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}>
-              <h3 className="section-number mb-4">Education &amp; Training</h3>
               <p className="text-lg leading-relaxed">
                 I graduated from East Brunswick High School in 2008, after which I went to Rutgers University to study English with a minor in Art History and Religion. I then pursued my Masters in Education and graduated Magna Cum Laude while also obtaining my teaching degree for K-12.
               </p>
             </motion.div>
-
-            <div className="section-divider" />
 
             <motion.div className="space-y-6" {...fadeInUp} transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
               <h3 className="section-number mb-4">Community &amp; Family</h3>
