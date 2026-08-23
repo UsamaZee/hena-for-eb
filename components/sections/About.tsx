@@ -46,21 +46,6 @@ export default function About() {
               </p>
             </motion.div>
 
-            <div className="section-divider" />
-
-            {/* <motion.div
-              className="quote-card"
-              initial={{ opacity: 0, scale: 0.97, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="quote-mark" aria-hidden="true">&ldquo;</span>
-              <p className="text-2xl md:text-3xl font-light leading-relaxed relative z-10">
-                My commitment to East Brunswick&apos;s children drives everything I do. With deep roots in this community and a personal stake in its educational future, I&apos;m ready to serve on the Board of Education and ensure every student has access to the world-class education they deserve.
-              </p>
-            </motion.div> */}
-
           </div>
         </div>
       </section>
