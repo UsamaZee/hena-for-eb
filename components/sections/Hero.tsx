@@ -30,13 +30,19 @@ export default function Hero() {
 
           {/* Left — Typography */}
           <div className="flex flex-col justify-center">
-            <div className="mb-12">
+            <div className="mb-6">
               <motion.h1
                 className="editorial-heading font-black! text-5xl md:text-6xl lg:text-7xl leading-tight mb-8"
                 {...fadeUp(0.25)}
               >
                 Local, Listening, Leading
               </motion.h1>
+              <motion.p className="text-base font-normal leading-relaxed max-w-md" {...fadeUp(0.35)}>
+                “The children are always ours, every single one of them.”
+                <span className="block text-right mt-1 text-sm">
+                  — James Baldwin
+                </span>
+              </motion.p>
             </div>
 
             <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>

@@ -34,7 +34,7 @@ export default function GetInTouch() {
             Get In <span className="accent-underline">Touch</span>
           </h1>
           <p className="text-text-muted text-xl mt-6 max-w-xl">
-            I&apos;m here to listen
+            I&apos;m here to listen!
           </p>
         </motion.div>
 
