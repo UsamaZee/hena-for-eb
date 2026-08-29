@@ -14,12 +14,28 @@ export default function Header() {
   const donateTrigger = useRef<HTMLButtonElement | null>(null);
   const donateDialog = useRef<HTMLDivElement | null>(null);
   const menuButton = useRef<HTMLButtonElement | null>(null);
+  const mobileMenu = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+
+      if (!mobileMenu.current?.contains(target) && !menuButton.current?.contains(target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, [isMenuOpen]);
 
   useEffect(() => {
     if (!isDonateModalOpen) return;
@@ -82,7 +98,7 @@ export default function Header() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
         <Link href="/" className="group">
-          <Image src={Logo} width={120} alt="HENA For EB Schools" className="h-auto" priority />
+          <Image src={Logo} width={160} alt="HENA For EB Schools" className="h-auto w-36 md:w-40" priority />
         </Link>
 
         {/* Desktop Navigation */}
@@ -107,6 +123,7 @@ export default function Header() {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden w-8 h-8 flex flex-col justify-center gap-1.5"
           aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
         >
           <span style={{ backgroundColor: 'var(--color-text)' }} className={`block w-6 h-px transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
           <span style={{ backgroundColor: 'var(--color-text)' }} className={`block w-6 h-px transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -116,7 +133,7 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div style={{ backgroundColor: 'var(--color-surface)', borderTop: '1px solid var(--color-border)' }} className="md:hidden">
+        <div ref={mobileMenu} style={{ backgroundColor: 'var(--color-surface)', borderTop: '1px solid var(--color-border)' }} className="md:hidden">
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
             <Link href="/" className="nav-link py-2">
               Home

@@ -43,7 +43,7 @@ export default function About() {
             <motion.div className="space-y-6" {...fadeInUp} transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}>
               <h3 className="section-number mb-4">Community &amp; Family</h3>
               <p className="text-lg leading-relaxed">
-                Today, I run my small family business in East Brunswick and am engaged in various local efforts in our community. I also have five nieces and nephews who are the world to me and in whose education and future I have a vested interest.
+                Today, I run my small third-generation family business in East Brunswick and am engaged in various local efforts in our community. My free time is usually spent devoted to my nieces and nephews, who are the world to me and inspire me every day to create a better world for them.
               </p>
             </motion.div>
 

@@ -13,22 +13,8 @@ export default function WhyAmIRunning() {
           </h1>
         </div>
 
-        <div className="flex flex-col gap-10 lg:gap-16">
-          <div className="relative aspect-video overflow-hidden rounded-lg border border-border bg-surface">
-            <Image
-              src={HeroBanner}
-              alt="Candidate Photo"
-              fill
-              priority
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="object-cover object-[50%_30%]"
-            />
-          </div>
-
-          <div
-            style={{ color: 'var(--color-text)' }}
-            className="space-y-7 lg:border-l-2 border-accent text-lg leading-relaxed lg:pl-8 md:text-xl"
-          >
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(18rem,1fr)] lg:gap-12 xl:gap-16">
+          <div className="order-2 min-w-0 space-y-7 text-justify border-accent text-lg leading-relaxed md:text-xl lg:order-1 lg:border-l-2 lg:pl-8">
             <p>
               I am running for the Board of Education because I deeply believe in the power of our robust public education system to transform the lives of our children. I have seen our district evolve over the past three decades, and my goal is to help our schools evolve with it.
             </p>
@@ -65,6 +51,16 @@ export default function WhyAmIRunning() {
                 Get In Touch
               </Link>
             </div>
+          </div>
+          <div className="relative order-1 mx-auto aspect-square w-full max-w-2xl overflow-hidden rounded-lg border border-border bg-surface lg:order-2 lg:max-w-none">
+            <Image
+              src={HeroBanner}
+              alt="Candidate Photo"
+              fill
+              priority
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="object-cover object-[50%_30%]"
+            />
           </div>
         </div>
       </div>
