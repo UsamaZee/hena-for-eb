@@ -68,7 +68,7 @@ export default function GetInTouch() {
                       href={href}
                       aria-label={label}
                       title={label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white! transition-colors hover:border-accent hover:text-accent!"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white bg-white text-primary! transition-colors hover:border-accent hover:text-accent!"
                     >
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </a>
