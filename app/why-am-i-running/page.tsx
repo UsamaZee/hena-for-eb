@@ -4,7 +4,7 @@ import HeroBanner from '@/components/layout/why-Im-running.jpg';
 
 export default function WhyAmIRunning() {
   return (
-    <div style={{ backgroundColor: 'var(--color-background)' }} className="pt-32 pb-20">
+    <div style={{ backgroundColor: 'var(--color-background)' }} className="pt-20 lg:pt-32 pb-20">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="mb-10 md:mb-12">
           <p className="section-number mb-4">My Story</p>
@@ -13,8 +13,8 @@ export default function WhyAmIRunning() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center">
-          <div className="relative aspect-4/3 overflow-hidden rounded-lg border border-border bg-surface">
+        <div className="flex flex-col gap-10 lg:gap-16">
+          <div className="relative aspect-video overflow-hidden rounded-lg border border-border bg-surface">
             <Image
               src={HeroBanner}
               alt="Candidate Photo"
@@ -27,14 +27,34 @@ export default function WhyAmIRunning() {
 
           <div
             style={{ color: 'var(--color-text)' }}
-            className="max-w-xl space-y-7 lg:border-l-2 border-accent text-lg leading-relaxed lg:pl-8 md:text-xl"
+            className="space-y-7 lg:border-l-2 border-accent text-lg leading-relaxed lg:pl-8 md:text-xl"
           >
             <p>
-              I am running for East Brunswick Board of Education because I sincerely believe in public education. Education is a human right, and ensuring a healthy future for all means investing in an education system that benefits everyone equitably.
+              I am running for the Board of Education because I deeply believe in the power of our robust public education system to transform the lives of our children. I have seen our district evolve over the past three decades, and my goal is to help our schools evolve with it.
             </p>
 
             <p>
-              I am here to help all children feel seen and heard so they can grow into their fullest potential.
+              Given the current global environment in which the use of artificial intelligence is on the rise, our children must be equipped to adapt and grow in ways we cannot predict. They need to be able to distinguish right from wrong and truth from misinformation. I believe that students can better develop these critical thinking skills if they have a strong community foundation in which their thoughts and ideas are respected and valued. Studies have shown that children who have even one adult who believes in them and validates their input grow up to contribute meaningfully to society.
+            </p>
+
+            <p>
+              While my educational experience was rigorous and challenging, I struggled with things that our children still struggle with today - validation and belonging. No matter how effective and challenging our curriculums and courses are, our education is incomplete if we fail to deliver a true sense of inclusivity to our children in what is now one of the most diverse districts in New Jersey. Particularly for student groups like special needs students who are often systematically left behind in larger school systems, it is imperative that we foster an environment of trust, care and strong community relationships so that all students can think critically and empathetically about the world they will inherit.
+            </p>
+
+            <p>
+              When I was in eighth grade, my health teacher Ms. Pulowski taught me something that has stuck with me ever since: <span className='text-accent font-bold'>&ldquo;The more you know someone, the less inclined you are to make fun of them or bully them.&rdquo;</span> For me, this meant that any given situation can always be seen from more than one perspective. This is the same mindset I intend to bring to our board by creating opportunities not only for students, but for educators and community members alike to unite in pursuit of our common goal: investing in our children, who are our future.
+            </p>
+
+            <p>
+              This includes investing in our High School building project to properly serve our students. As someone who regularly makes important financial decisions for my business, I will ensure that the money our town devotes to address the desperately-needed High School update will radically improve our students&rsquo; learning conditions and will future-proof our High School for generations to come.
+            </p>
+
+            <p>
+              As a business owner, communicating clearly, listening carefully to those around me, and taking their feedback into account to come up with solutions is something I do on a daily basis. As a community organizer who knows what it means to have to stand up for your rights, I know how to speak to local and government officials and advocate for everyone to have a place at the table. With this experience, I am confident I will help create a climate in which every student&rsquo;s voice is heard and they are seen and appreciated for who they are.
+            </p>
+
+            <p>
+              Together with our amazing students, teachers, parents, and administrators, I&rsquo;m eager to help accomplish our district&rsquo;s Strategic 2030 Plan. My identity, rooted in my immigrant family background and day-to-day experience working with a variety of people will enable me to help our students thrive in their diversity. Here&rsquo;s to our future!
             </p>
 
             <div className="pt-2">

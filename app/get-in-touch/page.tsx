@@ -3,7 +3,6 @@
 import { motion } from 'motion/react';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import ContactForm from '@/components/ui/ContactForm';
-import Link from 'next/link';
 
 const contactDetails = [
   {
@@ -14,13 +13,12 @@ const contactDetails = [
 ];
 
 const socialLinks = [
-  { label: 'Facebook', href: '#', icon: FaFacebookF },
-  { label: 'Instagram', href: '#', icon: FaInstagram },
+  { label: 'Instagram', href: 'https://www.instagram.com/henaforeb?igsi=MWFpaWg5a2dzcm5meA%3D%3D&wa_status_inline=true', icon: FaInstagram },
 ];
 
 export default function GetInTouch() {
   return (
-    <div className="min-h-screen bg-background pt-32 pb-24">
+    <div className="min-h-screen bg-background pt-20 lg:pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
 
         {/* Page header */}

@@ -148,7 +148,7 @@ export default function ContactForm() {
               />
             </div>
 
-            <label className="flex items-start gap-3 cursor-pointer group">
+            <label className="flex items-center gap-3 cursor-pointer group">
               <div className="relative mt-0.5">
                 <input
                   type="checkbox"

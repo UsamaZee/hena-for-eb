@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import HeroBanner from '@/components/layout/Hena-for-BOE.jpg'
@@ -10,16 +11,9 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
-const stats = [
-  { value: '15+', label: 'Years Advocating for Education' },
-  { value: '4,500+', label: 'Students in Our District' },
-  { value: '$52M', label: 'Annual Education Investment' },
-  { value: '5', label: 'Public Schools to Lead' },
-];
-
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen pt-32 pb-0 flex flex-col items-center justify-between bg-background">
+    <section className="relative overflow-hidden min-h-screen pt-20 lg:pt-32 pb-0 flex flex-col items-center justify-between bg-background">
       {/* Decorative background elements */}
       <div className="hero-blob-primary" />
       <div className="hero-blob-accent" />
@@ -47,7 +41,7 @@ export default function Hero() {
 
             <motion.div className="flex flex-col sm:flex-row gap-4 pt-8" {...fadeUp(0.55)}>
               <Link href="/why-am-i-running" className="btn btn-primary">
-                Why I'm Running
+                Why I&apos;m Running
               </Link>
               <Link href="/get-in-touch" className="btn btn-ghost-primary">
                 Get In Touch
@@ -62,7 +56,14 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img src={HeroBanner.src} alt="Candidate Photo" className="absolute inset-0 w-full h-full object-cover" />
+            <Image
+              src={HeroBanner}
+              alt="Candidate Photo"
+              fill
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
             {/* <div className="text-white h-max w-max rounded text-center inset-0 absolute bg-primary font-black text-2xl md:text-3xl lg:text-4xl">
               <p className="text-xl px-5 py-3 text-left">
                 Vote<br/>
