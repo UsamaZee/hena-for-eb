@@ -20,6 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact email
+
+The contact API requires these environment variables in each deployment environment:
+
+```dotenv
+RESEND_API_KEY=re_...
+CONTACT_TO_EMAIL=info@henaforeb.com
+CONTACT_FROM_EMAIL="Hena for EB <contact@henaforeb.com>"
+```
+
+Before deploying, verify the `henaforeb.com` sending domain in Resend and create an API key with sending access. Resend's `onboarding@resend.dev` address is only for testing and can send only to the email address associated with the Resend account.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

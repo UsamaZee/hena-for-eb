@@ -8,7 +8,7 @@ const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   email: z.string().trim().email().max(254),
   phone: z.string().trim().max(30).optional().default(''),
-  message: z.string().trim().min(10).max(5_000),
+  message: z.string().trim().min(4),
   interested: z.boolean().optional().default(false),
   website: z.string().max(200).optional().default(''),
 }).strict();
@@ -50,7 +50,18 @@ export async function POST(request: NextRequest) {
 
     const parsedBody = contactSchema.safeParse(body);
     if (!parsedBody.success) {
-      return NextResponse.json({ error: 'Please check the form fields and try again.' }, { status: 400 });
+      const fieldErrors = parsedBody.error.flatten().fieldErrors;
+      const errorMap: { [key: string]: string } = {
+        name: 'Name must be between 2-100 characters.',
+        email: 'Please provide a valid email address.',
+        phone: 'Phone number is invalid.',
+        message: 'Message must be at least 4 characters.',
+        interested: 'Invalid value for campaign updates.',
+        website: 'Website URL is too long.',
+      };
+      const firstField = Object.keys(fieldErrors)[0];
+      const errorMessage = firstField ? errorMap[firstField] || 'Invalid form data.' : 'Invalid form data.';
+      return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
 
     const { name, email, phone, message, interested, website } = parsedBody.data;
@@ -86,12 +97,17 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      console.error('Resend contact delivery failed:', error.name);
+      console.error('Resend contact delivery failed:', {
+        name: error.name,
+        message: error.message,
+        statusCode: error.statusCode,
+      });
       return NextResponse.json({ error: 'Unable to send your message right now.' }, { status: 502 });
     }
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    console.error('Unexpected contact delivery failure:', error);
     return NextResponse.json(
       { error: 'Unable to send your message right now.' },
       { status: 500 }
