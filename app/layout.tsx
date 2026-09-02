@@ -13,6 +13,9 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   title: "Hena for East Brunswick Board of Education",
   description: "Education is a human right. Vote Hena for the East Brunswick Board of Education.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
