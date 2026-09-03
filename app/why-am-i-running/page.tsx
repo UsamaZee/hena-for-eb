@@ -1,10 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import HeroBanner from '@/components/layout/why-Im-running.jpg';
+import JsonLd from '@/components/seo/JsonLd';
+import { createPageMetadata, siteName, siteUrl } from '@/lib/seo';
+
+export const metadata = createPageMetadata('Why Hena Mughal Is Running', 'Learn why Hena Mughal is running for the East Brunswick Board of Education and her priorities for students, educators, and the community.', '/why-am-i-running');
 
 export default function WhyAmIRunning() {
   return (
     <div style={{ backgroundColor: 'var(--color-background)' }} className="pt-20 lg:pt-32 pb-20">
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        '@id': `${siteUrl}/why-am-i-running#webpage`,
+        url: `${siteUrl}/why-am-i-running`,
+        name: 'Why Hena Mughal Is Running',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#hena-mughal` },
+        breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+          { '@type': 'ListItem', position: 1, name: siteName, item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: "Why I'm Running", item: `${siteUrl}/why-am-i-running` },
+        ] },
+      }} />
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="mb-10 md:mb-12">
           <p className="section-number mb-4">My Story</p>
@@ -55,7 +72,7 @@ export default function WhyAmIRunning() {
           <div className="relative order-1 mx-auto aspect-square w-full max-w-2xl overflow-hidden rounded-lg border border-border bg-surface lg:order-2 lg:max-w-none">
             <Image
               src={HeroBanner}
-              alt="Candidate Photo"
+              alt="Hena Mughal"
               fill
               priority
               sizes="(min-width: 1024px) 33vw, 100vw"

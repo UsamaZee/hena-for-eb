@@ -31,7 +31,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#get-in-touch" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
+                <Link href="/get-in-touch" style={{ color: 'var(--color-text)' }} className="hover:text-gray-600 transition-colors">
                   Get In Touch
                 </Link>
               </li>

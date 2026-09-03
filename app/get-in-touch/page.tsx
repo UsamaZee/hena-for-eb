@@ -1,95 +1,31 @@
-'use client';
+import type { Metadata } from 'next';
+import GetInTouch from '@/components/pages/GetInTouch';
+import JsonLd from '@/components/seo/JsonLd';
+import { createPageMetadata, siteName, siteUrl } from '@/lib/seo';
 
-import { motion } from 'motion/react';
-import { FaFacebookF, FaInstagram } from 'react-icons/fa';
-import ContactForm from '@/components/ui/ContactForm';
+export const metadata: Metadata = createPageMetadata(
+  'Get in Touch with Hena Mughal',
+  'Contact Hena Mughal, share your thoughts, and learn how to get involved with her East Brunswick Board of Education campaign.',
+  '/get-in-touch',
+);
 
-const contactDetails = [
-  {
-    label: 'Email',
-    value: 'info@henaforeb.com',
-    href: 'mailto:info@henaforeb.com',
-  },
-];
-
-const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/henaforeb?igsi=MWFpaWg5a2dzcm5meA%3D%3D&wa_status_inline=true', icon: FaInstagram },
-];
-
-export default function GetInTouch() {
+export default function GetInTouchPage() {
   return (
-    <div className="min-h-screen bg-background pt-20 lg:pt-32 pb-24">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-
-        {/* Page header */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h1 className="editorial-heading text-5xl md:text-6xl leading-tight">
-            Get In <span className="accent-underline">Touch</span>
-          </h1>
-          <p className="text-text-muted text-xl mt-6 max-w-xl">
-            I&apos;m here to listen!
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-
-          {/* Left — Contact sidebar */}
-          <motion.div
-            className="lg:col-span-2 space-y-6"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
-
-            {/* Contact details */}
-            <div className="bg-primary rounded-2xl p-6 space-y-6" style={{ boxShadow: '0 2px 20px rgba(9,79,11,0.06)' }}>
-              {contactDetails.map(({ label, value, href }) => (
-                <div key={label}>
-                  <p className="section-number mb-1 text-gray-100!">{label}</p>
-                  {href ? (
-                    <a href={href} className="text-base font-bold text-white! hover:text-accent! transition-colors">{value}</a>
-                  ) : (
-                    <p className="text-base font-medium text-white">{value}</p>
-                  )}
-                </div>
-              ))}
-
-              <div>
-                <p className="section-number text-gray-100! mb-3">Follow Along</p>
-                <div className="flex gap-3">
-                  {socialLinks.map(({ label, href, icon: Icon }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      aria-label={label}
-                      title={label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white bg-white text-primary! transition-colors hover:border-accent hover:text-accent!"
-                    >
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right — Form card */}
-          <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <ContactForm />
-          </motion.div>
-        </div>
-
-      </div>
-    </div>
+    <>
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        '@id': `${siteUrl}/get-in-touch#webpage`,
+        url: `${siteUrl}/get-in-touch`,
+        name: 'Get in Touch with Hena Mughal',
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#hena-mughal` },
+        breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
+          { '@type': 'ListItem', position: 1, name: siteName, item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Get In Touch', item: `${siteUrl}/get-in-touch` },
+        ] },
+      }} />
+      <GetInTouch />
+    </>
   );
 }

@@ -10,7 +10,7 @@ export default function Contact() {
       <div className="bg-background pb-24" />
 
       {/* Call to Action Section */}
-      <section className="py-24 bg-primary text-white">
+      <section id="get-in-touch" className="py-24 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             className="mb-8"

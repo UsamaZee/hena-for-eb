@@ -58,7 +58,7 @@ export default function Hero() {
           >
             <Image
               src={HeroBanner}
-              alt="Candidate Photo"
+              alt="Hena Mughal"
               fill
               priority
               sizes="(min-width: 1024px) 50vw, 100vw"
