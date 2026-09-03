@@ -2,17 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef, type MouseEvent } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { FaXmark } from 'react-icons/fa6';
+import { useState, useEffect, useRef } from 'react';
 import Logo from '@/components/layout/logo2.png'
+
+const donationUrl = 'https://secure.actblue.com/donate/hena-mughal-1';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const donateTrigger = useRef<HTMLButtonElement | null>(null);
-  const donateDialog = useRef<HTMLDivElement | null>(null);
   const menuButton = useRef<HTMLButtonElement | null>(null);
   const mobileMenu = useRef<HTMLDivElement | null>(null);
 
@@ -37,53 +34,8 @@ export default function Header() {
     return () => document.removeEventListener('pointerdown', onPointerDown);
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    if (!isDonateModalOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-    const fallbackMenuButton = menuButton.current;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setIsDonateModalOpen(false);
-        return;
-      }
-
-      if (event.key !== 'Tab' || !donateDialog.current) return;
-
-      const focusableElements = donateDialog.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      if (event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault();
-        lastElement?.focus();
-      } else if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault();
-        firstElement?.focus();
-      }
-    };
-
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', onKeyDown);
-      requestAnimationFrame(() => {
-        const focusTarget = donateTrigger.current?.isConnected ? donateTrigger.current : fallbackMenuButton;
-        focusTarget?.focus();
-      });
-    };
-  }, [isDonateModalOpen]);
-
-  const openDonateModal = (event: MouseEvent<HTMLButtonElement>) => {
-    donateTrigger.current = event.currentTarget;
+  const handleDonationClick = () => {
     setIsMenuOpen(false);
-    setIsDonateModalOpen(true);
-  };
-
-  const closeDonateModal = () => {
-    setIsDonateModalOpen(false);
   };
 
   return (
@@ -112,9 +64,9 @@ export default function Header() {
           <Link href="/get-in-touch" className="nav-link">
             Get In Touch
           </Link>
-          <button type="button" onClick={openDonateModal} className="nav-link-donate cursor-pointer">
+          <a href={donationUrl} target="_blank" rel="noopener noreferrer" className="nav-link-donate">
             Donate
-          </button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -144,67 +96,18 @@ export default function Header() {
             <Link href="/get-in-touch" className="nav-link py-2">
               Get In Touch
             </Link>
-            <button type="button" onClick={openDonateModal} className="nav-link-donate py-2 w-fit cursor-pointer">
+            <a
+              href={donationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleDonationClick}
+              className="nav-link-donate py-2 w-fit"
+            >
               Donate
-            </button>
+            </a>
           </div>
         </div>
       )}
-
-      <AnimatePresence>
-        {isDonateModalOpen && (
-          <motion.div
-            className="fixed inset-0 z-60 flex items-center justify-center bg-primary-dark/75 px-6 py-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={closeDonateModal}
-          >
-            <motion.div
-              ref={donateDialog}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="donate-modal-title"
-              aria-describedby="donate-modal-description"
-              className="relative w-full max-w-lg border border-border bg-surface px-7 py-9 text-left shadow-xl sm:px-10 sm:py-11"
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 10, scale: 0.98 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={closeDonateModal}
-                className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center text-text-muted transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                aria-label="Close donation message"
-                autoFocus
-              >
-                <FaXmark className="h-5 w-5" aria-hidden="true" />
-              </button>
-
-              <p className="section-number mb-4 pr-10">Support the campaign</p>
-              <div className="mb-6 h-1 w-14 bg-accent" />
-              <h2 id="donate-modal-title" className="editorial-heading mb-4 text-3xl leading-tight sm:text-4xl">
-                Online donations are coming soon
-              </h2>
-              <p id="donate-modal-description" className="mb-8 max-w-md text-base leading-relaxed text-text-muted sm:text-lg">
-                We&apos;re preparing a secure way for you to support Hena&apos;s campaign. Please check back shortly.
-              </p>
-
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Link href="/get-in-touch" onClick={closeDonateModal} className="btn btn-primary">
-                  Get In Touch
-                </Link>
-                <button type="button" onClick={closeDonateModal} className="btn btn-secondary">
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }
