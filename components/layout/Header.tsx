@@ -48,9 +48,15 @@ export default function Header() {
         boxShadow: scrolled ? '0 2px 20px rgba(9,79,11,0.06)' : 'none',
       }}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <nav className={`max-w-7xl mx-auto px-6 lg:px-8 ${scrolled ? 'h-16' : 'h-20'} flex items-center justify-between transition-all`}>
         <Link href="/" className="group">
-          <Image src={Logo} width={160} alt="HENA For EB Schools" className="h-auto w-36 md:w-40" priority />
+          <Image
+            src={Logo}
+            width={160}
+            alt="HENA For EB Schools"
+            className={`h-auto transition-all duration-300 ${scrolled ? 'w-28 md:w-32' : 'w-36 md:w-40'}`}
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
